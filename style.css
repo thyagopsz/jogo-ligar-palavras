@@ -14,8 +14,9 @@ body{
 
 
 .container{
-    width: 100%;
+    width: 90%;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
 }
 
@@ -23,20 +24,25 @@ body{
     padding: 10px;
 
 }
-.container-palavras-ingles{
-    border: solid rosybrown;
-}
-.container-palavras-portugues{
-    border: solid gold;
-}
 
+.container-palavras-ingles li{
+    color: yellow;
+    background-color: brown;
+}
+.container-palavras-portugues li{
+    color: rgb(20, 31, 47);
+    background-color: rgb(77, 133, 190);
+}
 .container-palavras-portugues li , .container-palavras-ingles li{
+    border-radius: 9px;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1.2rem;
     display: block;
     margin: 10px;
     padding: 10px;
     border: solid 2px #fff;
-    color: rgb(20, 31, 47);
-    background-color: rgb(77, 133, 190);
+  
+}
+.container-palavras-ingles li.hover{
+    background-color: rgb(249, 192, 192);
 }
