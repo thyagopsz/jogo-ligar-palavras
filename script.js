@@ -1,7 +1,7 @@
 const palavrasPortugues = document.querySelector('.container-palavras-portugues');
 const palavrasIngles = document.querySelector('.container-palavras-ingles');
 
-let temas = [   
+let termos = [   
     {
         ingles: 'this',
         portugues: 'isso'
@@ -12,10 +12,10 @@ let temas = [
     },
     {
         ingles: 'Qual seu nome?',
-        portugues: 'Whats is your name?'
+        portugues: 'What\'s is your name?'
     },
     {
-        ingles: 'That',
+        ingles: 'that',
         portugues: 'aquilo'
     }
 ];
@@ -79,12 +79,12 @@ function drop(e){
 
 function popularListasPortuguesIngles(){    
     sortear();
-    temas.forEach(tema =>{
+    termos.forEach(tema =>{
         palavrasPortugues.innerHTML += `<li draggable="true"  data-palavra="${tema.ingles}" >
         ${tema.portugues}</li>`
     })
     sortear();  
-    temas.forEach(tema =>{
+    termos.forEach(tema =>{
         palavrasIngles.innerHTML += `<li draggable="true"  data-palavra="${tema.ingles}" >
         ${tema.ingles}
     </li>`
@@ -92,12 +92,12 @@ function popularListasPortuguesIngles(){
 }
 
 function sortear(){
-    let tamanho = temas.length;
+    let tamanho = termos.length;
     for(let i = tamanho-1;i>0;i--){
         let posicaoSorteada  =  Math.floor(Math.random() * (i+1));
-        let aux = temas[posicaoSorteada];
-        temas[posicaoSorteada] = temas[i];
-        temas[i] = aux;
+        let aux = termos[posicaoSorteada];
+        termos[posicaoSorteada] = termos[i];
+        termos[i] = aux;
     }
 }
 
