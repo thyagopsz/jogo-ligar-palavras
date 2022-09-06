@@ -1,6 +1,44 @@
-const palavrasPortugues = document.querySelectorAll('.container-palavras-portugues li');
-const palavrasIngles = document.querySelectorAll('.container-palavras-ingles li');
+const palavrasPortugues = document.querySelector('.container-palavras-portugues');
+const palavrasIngles = document.querySelector('.container-palavras-ingles');
 
+let temas = [   
+    {
+        ingles: 'this',
+        portugues: 'isso'
+    },
+    {
+        ingles: 'bola',
+        portugues: 'ball'
+    },
+    {
+        ingles: 'Qual seu nome?',
+        portugues: 'Whats is your name?'
+    },
+    {
+        ingles: 'That',
+        portugues: 'aquilo'
+    }
+];
+
+
+function adicionarEventos(){
+    const listaPortugues = document.querySelectorAll('.container-palavras-portugues li');
+    const listaIngles = document.querySelectorAll('.container-palavras-ingles li');
+    
+    listaPortugues.forEach((item) =>{
+        item.addEventListener('dragstart' , dragstart);
+
+    })
+    
+    listaIngles.forEach((item) =>{
+        item.addEventListener('dragstart' , dragstart);
+        item.addEventListener('dragenter' , dragenter);
+        item.addEventListener('dragover' , dragover);
+        item.addEventListener('dragleave' , dragleave);
+        item.addEventListener('drop' , drop);
+    })
+
+}
 
 function dragstart(e){
     console.log('dragstart');
@@ -22,20 +60,61 @@ function dragover(e){
 
 }
 function drop(e){
+    //remove hover do item em inglês
     e.target.classList.remove('hover');
+    const palavraPortuguesArrastada = document.querySelector('.movendo');
+    //verificação se é a palavra correta em ingles e portgugês
+    if(palavraPortuguesArrastada.dataset.palavra === e.target.dataset.palavra){
+        e.target.remove();
+        palavraPortuguesArrastada.remove();
+    }
+    palavraPortuguesArrastada.classList.remove('movendo');
+
+    if(checar()){
+        document.querySelector('.container').classList.add('hide');
+        document.querySelector('.telaFim').classList.remove('hide');
+    }
 }
 
 
+function popularListasPortuguesIngles(){    
+    sortear();
+    temas.forEach(tema =>{
+        palavrasPortugues.innerHTML += `<li draggable="true"  data-palavra="${tema.ingles}" >
+        ${tema.portugues}</li>`
+    })
+    sortear();  
+    temas.forEach(tema =>{
+        palavrasIngles.innerHTML += `<li draggable="true"  data-palavra="${tema.ingles}" >
+        ${tema.ingles}
+    </li>`
+    })
+}
 
-palavrasPortugues.forEach((item) =>{
-    item.addEventListener('dragstart' , dragstart);
+function sortear(){
+    let tamanho = temas.length;
+    for(let i = tamanho-1;i>0;i--){
+        let posicaoSorteada  =  Math.floor(Math.random() * (i+1));
+        let aux = temas[posicaoSorteada];
+        temas[posicaoSorteada] = temas[i];
+        temas[i] = aux;
+    }
+}
 
-})
+function checar(){
+    const tamanhoPalavras = document.querySelector('ul').children.length;
+    if(tamanhoPalavras != 0){
+        return false;
+    } else{
+        return true;
+    }
+}
 
-palavrasIngles.forEach((item) =>{
-    item.addEventListener('dragstart' , dragstart);
-    item.addEventListener('dragenter' , dragenter);
-    item.addEventListener('dragover' , dragover);
-    item.addEventListener('dragleave' , dragleave);
-    item.addEventListener('drop' , drop);
+function reiniciar(){
+    window.location.reload();
+}
+
+window.addEventListener('load' , ()=>{
+    popularListasPortuguesIngles();
+    adicionarEventos();
 })
