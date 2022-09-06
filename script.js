@@ -7,8 +7,8 @@ let termos = [
         portugues: 'isso'
     },
     {
-        ingles: 'bola',
-        portugues: 'ball'
+        ingles: 'ball',
+        portugues: 'bola'
     },
     {
         ingles: 'What\'s is your name?',
@@ -102,12 +102,12 @@ function sortear(){
 }
 
 function checar(){
+    let terminou = true;
     const tamanhoPalavras = document.querySelector('ul').children.length;
     if(tamanhoPalavras != 0){
-        return false;
-    } else{
-        return true;
+        terminou =  false;
     }
+    return terminou;
 }
 
 function reiniciar(){
