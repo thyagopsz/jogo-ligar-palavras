@@ -11,8 +11,8 @@ let termos = [
         portugues: 'ball'
     },
     {
-        ingles: 'Qual seu nome?',
-        portugues: 'What\'s is your name?'
+        ingles: 'What\'s is your name?',
+        portugues: 'Qual o seu nome'
     },
     {
         ingles: 'that',
